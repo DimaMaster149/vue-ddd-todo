@@ -3,13 +3,16 @@
     custom
     <template v-if="todos && todos.length > 0">
       <span v-for="todo in todos" :key="todo.id">
-        <span>
+        <span style="cursor: pointer;" @click="removeTodo(todo.id)">
           {{`id: ${todo.id}, name: ${todo.name}`}}
         </span>
       </span>
     </template>
-    <input type="text" v-model="todoName">
-    <button @click="addTodo()"> Create todo</button>
+    <div>
+      <input type="text" v-model="todoName">
+      <button @click="addTodo($event)"> Create todo</button>
+    </div>
+    
   </div>
 </template>
 
@@ -31,11 +34,26 @@ export default class HelloWorld extends Vue {
     this.todos = await this.todo.getTodos();
   }
   public async addTodo() {
+    if (this.todoName.length === 0) {
+      return;
+    }
     this.todos = await this.todo.createNewTodo({
       id: Date.now(),
       isCompleted: false,
       name: this.todoName,
     });
   }
+
+  public async removeTodo(id) {
+    this.todos = await this.todo.deleteTodo(id); 
+  }
 }
 </script>
+
+<style lang="scss">
+.hello {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+</style>

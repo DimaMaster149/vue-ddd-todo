@@ -24,6 +24,7 @@ export class Todo {
   public async deleteTodo(todoId) {
     await this.TodoRepository.deleteTodo(todoId);
     this.todos = this.todos!.filter(todo => todo.id !== todoId);
+    return this.todos;
   }
 
   public async getTodoById(todoId) {
