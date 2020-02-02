@@ -1,4 +1,5 @@
 // todo class
+import Vue from 'vue';
 import { get } from '@/context/context'
 import { ITodo, TodoRepository } from '@/models/Todo'
 
@@ -9,7 +10,6 @@ export class Todo {
   public async createNewTodo(todo: any) {
     const data = await this.TodoRepository.createNewTodo(todo);
     this.todos!.push(data);
-    return this.todos;
   }
 
   public async getTodos() {
@@ -23,7 +23,9 @@ export class Todo {
 
   public async deleteTodo(todoId) {
     await this.TodoRepository.deleteTodo(todoId);
-    this.todos = this.todos!.filter(todo => todo.id !== todoId);
+    const index = this.todos!.findIndex(todo => todo.id === todoId);
+    Vue.delete(this.todos, index);
+    // this.todos = this.todos!.filter(todo => todo.id !== todoId);
     return this.todos;
   }
 

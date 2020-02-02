@@ -37,7 +37,7 @@ export default class HelloWorld extends Vue {
     if (this.todoName.length === 0) {
       return;
     }
-    this.todos = await this.todo.createNewTodo({
+    await this.todo.createNewTodo({
       id: Date.now(),
       isCompleted: false,
       name: this.todoName,
@@ -45,8 +45,14 @@ export default class HelloWorld extends Vue {
   }
 
   public async removeTodo(id) {
-    this.todos = await this.todo.deleteTodo(id); 
+    await this.todo.deleteTodo(id); 
   }
+
+  // get todos () {
+  //   if (this.todo) {
+  //     return this.todo.getTodos();
+  //   } return [];
+  // }
 }
 </script>
 
