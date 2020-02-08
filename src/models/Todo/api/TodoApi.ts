@@ -1,28 +1,32 @@
 // api service
 import { TodoRepository } from '@/models/Todo/domain/repository/TodoRepository'
 
+let todos = [];
 export class TodoApi implements TodoRepository {
-  public createNewTodo(todo) {
-    console.log(todo, 'create');
+  public createNewTodo(todoName: string) {
+    const todo = {
+      id: Date.now(),
+      isCompleted: false,
+      name: todoName,
+    }
+    todos.push(todo);
     return Promise.resolve(todo)
   }
 
   public getTodos() {
-    return Promise.resolve([]);
+    return Promise.resolve(todos);
   }
 
   public getCompletedTodos() {
-    console.log('completed todos');
-    return Promise.resolve([]);
+    return Promise.resolve(todos.filter(todo => todo.isCompleted));
   }
 
-  public deleteTodo(todoId) {
-    console.log(todoId, 'delete todo');
-    return Promise.resolve([]);
+  public deleteTodo(todoId: string) {
+    todos = todos.filter(todo => todo.id !== todoId);
+    return Promise.resolve();
   }
 
-  public getTodoById(todoId) {
-    console.log(todoId, 'getTodoById');
-    return Promise.resolve({});
+  public getTodoById(todoId: string) {
+    return Promise.resolve(todos.find(todo => todo.id === todoId));
   }
 }

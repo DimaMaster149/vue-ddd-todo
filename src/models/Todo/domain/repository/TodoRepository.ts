@@ -3,7 +3,7 @@ import { ITodo } from '@/models/ToDo'
 // import { IUserTokenAndId } from '~/models/User/domain/IUserTokenAndId'
 
 export interface TodoRepository {
-  createNewTodo(todo: ITodo): Promise<ITodo>;
+  createNewTodo(todoName: string): Promise<ITodo>;
   getTodos(): Promise<ITodo[]>;
   getCompletedTodos(): Promise<ITodo[]>;
   deleteTodo(todoId: string): Promise<any>;
