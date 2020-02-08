@@ -8,7 +8,6 @@ export class TodoService {
     if (!this.todo) {
       this.todo = await new Todo()
     }
-    console.log(this.todo, 'this.todo')
     return this.todo;
   }
 }

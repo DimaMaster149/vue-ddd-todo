@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { TodoService } from '@/models/Todo'
-import { get } from '@/context/context'
+// import { get } from '@/context/context'
 
 @Component({ name: 'hello-world' })
 export default class HelloWorld extends Vue {
@@ -30,7 +30,6 @@ export default class HelloWorld extends Vue {
 
   async created () {
     this.todo = await this.todoService.createTodo();
-    console.log(this.todo, 'todod')
   }
   public async addTodo() {
     if (this.todoName.length === 0) {

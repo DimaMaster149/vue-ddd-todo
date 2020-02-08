@@ -7,4 +7,5 @@ registry(TodoService, 'todoService')
 
 registry(TodoApi, 'todoRepository')
 
-Vue.mixin(contextMixin);
+// Vue.mixin(contextMixin);
+export default contextMixin;
